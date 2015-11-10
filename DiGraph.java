@@ -2,6 +2,7 @@
 Autor: Diego Rosales
 Implementacion de un Grafo con
 Direccion y ponderacion para las aristas
+Implementado con ArrayLists
 DiGraph.java
 */
 
@@ -52,7 +53,6 @@ public class DiGraph<T>{
 		s+="\n";
 		s+="Adyacencias:\n";
 		for(int i=0; i<aristas.size(); i++){
-			s+=i+" ";
 			for(int h=0; h<aristas.get(i).size(); h++){
 				int num = aristas.get(i).get(h);
 				if(num<1000){
@@ -66,5 +66,10 @@ public class DiGraph<T>{
 		}
 		return s;
 	}
+	
+	public boolean contains(T nodo){
+		return nodos.contains(nodo);
+	}
+	
 	
 }
