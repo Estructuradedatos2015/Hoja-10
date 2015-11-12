@@ -119,4 +119,23 @@ public class DiGraph{
 		}
 	}
 	
+	public String centro(){
+		this.FloydWarshall();
+		int min=0;
+		int max=0;
+		int nod=0;
+		for(int i=0; i<nodos.size(); i++){
+			for(int j=0; j<hodos.size(); j++0){
+				if(D[i][j]>max){
+					max=D[i][j];
+				}
+			}
+			if(max<min){
+				min=max;
+				nod=i;
+			}
+		}
+		return nodos.get(i);
+	}
+	
 }
