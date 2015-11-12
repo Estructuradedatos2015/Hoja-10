@@ -11,7 +11,7 @@ public class Rutas{
 	
 	
 	public static void main(String args[]){
-		DiGraph<String> grafo=new DiGraph<>();
+		DiGraph grafo=new DiGraph();
 		
 			
 		// Declaración e inicialización de variables.
@@ -71,6 +71,8 @@ public class Rutas{
 			catch(Exception ex){
 				System.out.println("Error al cerrar el archivo!");
 			}
+			grafo.FloydWarshall();
+			
 			System.out.println(grafo);
 			
 		}

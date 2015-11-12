@@ -1,2 +1,10 @@
-Diego Kervin 7
-Mel Diego 5
+A A 0
+B B 0
+C C 0
+D D 0
+A D 0
+A C 3
+C D 5
+D B 4
+B A -2
+B D 1

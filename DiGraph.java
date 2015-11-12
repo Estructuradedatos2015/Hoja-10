@@ -10,9 +10,11 @@ import java.util.ArrayList;
 
 
 
-public class DiGraph<T>{
-	private ArrayList<T> nodos;
+public class DiGraph{
+	private ArrayList<String> nodos;
 	private ArrayList<ArrayList<Integer>> aristas;
+	private int[][] D;
+	private String[][] S;
 	private final int infinito = 1000000;
 	
 	public DiGraph(){
@@ -21,7 +23,7 @@ public class DiGraph<T>{
 	}
 	
 	
-	public void addNode(T node){
+	public void addNode(String node){
 		nodos.add(node);
 		aristas.add(new ArrayList<Integer>());
 		for(int i=0; i<nodos.size(); i++){
@@ -34,7 +36,7 @@ public class DiGraph<T>{
 		useful.set(useful.size()-1,0);
 	}
 	
-	public void addRelation(T origin, T destination, int ponder){
+	public void addRelation(String origin, String destination, int ponder){
 		int org = nodos.indexOf(origin);
 		int des = nodos.indexOf(destination);
 		ArrayList<Integer> useful = aristas.get(org);
@@ -64,12 +66,57 @@ public class DiGraph<T>{
 			}
 			s+="\n";
 		}
+		s+="\n\n\n\n";
+		s+="Rutas mas cortas:\n\n";
+		for(int i=0; i<nodos.size(); i++){
+			for(int j=0; j<nodos.size(); j++){
+				s+=D[i][j]+" ";
+			}
+			s+="\n";
+		}
+		s+="\n\n\n\n";
+		s+="Predecesores:\n\n";
+		for(int i=0; i<nodos.size(); i++){
+			for(int j=0; j<nodos.size(); j++){
+				s+=S[i][j]+" ";
+			}
+			s+="\n";
+		}
 		return s;
 	}
 	
-	public boolean contains(T nodo){
+	public boolean contains(String nodo){
 		return nodos.contains(nodo);
 	}
 	
+	public void removeRelation(String origin, String destination){
+		int org = nodos.indexOf(origin);
+		int des = nodos.indexOf(destination);
+		ArrayList<Integer> useful = aristas.get(org);
+		useful.set(des, infinito);
+		this.FloydWarshall();
+	}
+	
+	public void FloydWarshall(){
+		ArrayList<Integer> useful;
+		D = new int[nodos.size()][nodos.size()];
+		for(int i=0; i<nodos.size(); i++){
+			useful=aristas.get(i);
+			for(int j=0; j<nodos.size(); j++){
+				D[i][j]=useful.get(j);
+			}
+		}
+		S=new String[nodos.size()][nodos.size()];
+		for(int k=0; k<nodos.size(); k++){
+			for(int i=0; i<nodos.size(); i++){
+				for(int j=0; j<nodos.size(); j++){
+					if(D[i][j]>(D[i][k]+D[k][j])){
+						D[i][j]=(D[i][k]+D[k][j]);
+						S[i][j]=nodos.get(k);
+					}
+				}
+			}
+		}
+	}
 	
 }
