@@ -41,6 +41,7 @@ public class DiGraph{
 		int des = nodos.indexOf(destination);
 		ArrayList<Integer> useful = aristas.get(org);
 		useful.set(des, ponder);
+		this.FloydWarshall();
 	}
 	
 	public String toString(){
@@ -70,7 +71,13 @@ public class DiGraph{
 		s+="Rutas mas cortas:\n\n";
 		for(int i=0; i<nodos.size(); i++){
 			for(int j=0; j<nodos.size(); j++){
-				s+=D[i][j]+" ";
+				int num=D[i][j];
+				if(num<1000){
+					s+=num+" ";
+				}
+				else{
+					s+="i ";
+				}
 			}
 			s+="\n";
 		}

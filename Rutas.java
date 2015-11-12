@@ -6,6 +6,7 @@ entre cualesquiera dos nodos
 */
 
 import java.io.*;
+import java.util.Scanner;
 
 public class Rutas{
 	
@@ -71,12 +72,90 @@ public class Rutas{
 			catch(Exception ex){
 				System.out.println("Error al cerrar el archivo!");
 			}
-			grafo.FloydWarshall();
 			
-			System.out.println(grafo);
+			Scanner user_input = new Scanner( System.in );
+			int option;
+			String input;
+			String[] deco;
 			
-			System.out.println(grafo.centro());
-			System.out.println(grafo.getPath("D","C"));
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("1. Mostrar la ruta mas corta entre dos ciudades");
+			System.out.println("2. Mostrar la Ciudad que es el centro del grafo");
+			System.out.println("3. Modificar las conexiones entre ciudades");
+			System.out.println("4. Finalizar Programa");
+			
+			option = Integer.parseInt(user_input.nextLine());
+			
+			do{
+				switch(option){
+					case 1:
+						System.out.print("Escriba el nombre de la ciudad de origen y luego el destino separadas por un espacio");
+						input=user_input.nextLine();
+						deco=input.split(" ");
+						System.out.println("");
+						System.out.println(grafo.getPath(deco[0],deco[1]));
+						break;
+					case 2:
+						System.out.println("");
+						System.out.println(grafo.centro());
+						break;
+					case 3:
+						System.out.println("");
+						System.out.println("Introduzca la opci[on que desea ejecutar");
+						System.out.println("1. Una Interrupcion de trafico entre dos ciudades");
+						System.out.println("2. Establecer una conexion entre dos ciudades");
+						option = Integer.parseInt(user_input.nextLine());
+						switch(option){
+							case 1:
+								System.out.println("Escriba el nombre de la ciudad de origen y luego el destino separadas por un espacio");
+								input=user_input.nextLine();
+								deco=input.split(" ");
+								grafo.removeRelation(deco[0],deco[1]);
+								System.out.println(grafo);
+								break;
+							case 2:
+								System.out.println("Escriba el nombre de la ciudad de origen y luego el destino separadas por un espacio y la distancia entre ambas en Km tambien separada por un espacio");
+								input=user_input.nextLine();
+								deco=input.split(" ");
+								grafo.addRelation(deco[0],deco[1],Integer.parseInt(deco[2]));
+								System.out.println(grafo);
+								break;
+							default:
+								break;
+						}
+						break;
+					default:
+						break;
+				}
+				if(option!=4){
+					System.out.println("");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("");
+					System.out.println("1. Mostrar la ruta mas corta entre dos ciudades");
+					System.out.println("2. Mostrar la Ciudad que es el centro del grafo");
+					System.out.println("3. Modificar las conexiones entre ciudades");
+					System.out.println("4. Finalizar Programa");
+					
+					option = Integer.parseInt(user_input.nextLine());
+				}
+			}while(option!=4);
+			
 			
 		}
 		else
