@@ -75,6 +75,9 @@ public class Rutas{
 			
 			System.out.println(grafo);
 			
+			System.out.println(grafo.centro());
+			System.out.println(grafo.getPath("D","C"));
+			
 		}
 		else
 		{

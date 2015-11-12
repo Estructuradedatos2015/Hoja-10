@@ -121,11 +121,12 @@ public class DiGraph{
 	
 	public String centro(){
 		this.FloydWarshall();
-		int min=0;
+		int min=infinito;
 		int max=0;
 		int nod=0;
 		for(int i=0; i<nodos.size(); i++){
-			for(int j=0; j<hodos.size(); j++0){
+			max=0;
+			for(int j=0; j<nodos.size(); j++){
 				if(D[i][j]>max){
 					max=D[i][j];
 				}
@@ -135,7 +136,24 @@ public class DiGraph{
 				nod=i;
 			}
 		}
-		return nodos.get(i);
+		return nodos.get(nod);
+	}
+	
+	public String getPath(String origin, String destination){
+		String path="";
+		path+="Largo de la Ruta: "+D[nodos.indexOf(origin)][nodos.indexOf(destination)];
+		path+="\n";
+		path+="Ruta a Seguir: ";
+		path+=origin;
+		while(!origin.equals(destination)){
+			path+=", ";
+			origin=S[nodos.indexOf(origin)][nodos.indexOf(destination)];
+			if(origin==null){
+				origin=destination;
+			}
+			path+=origin;
+		}
+		return path;
 	}
 	
 }
